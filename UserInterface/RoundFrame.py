@@ -86,7 +86,7 @@ class RoundFrame:
             )
             label.grid(row=0, column=i, padx=5, pady=5)
 
-    def r4_draw(self, answers_info):
+    def r5_draw(self, answers_info):
         self.refresh()
         for i, answer in enumerate(answers_info):
             color = "red"
@@ -103,7 +103,7 @@ class RoundFrame:
             )
             label.grid(row=i, column=0, padx=5, pady=5)
 
-    def r5_draw(self, answers_info):
+    def r6_draw(self, answers_info):
         self.refresh()
         for i, answer in enumerate(answers_info):
             color = "red"

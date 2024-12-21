@@ -88,24 +88,26 @@ class R3Question(Question):
         random.shuffle(shuffled_hints)
         return shuffled_hints
 
-class R4Question(Question):
+
+class R5Question(Question):
     def __init__(self, question: str, answers: list):
-        super(R4Question, self).__init__(question, answers)
+        super(R5Question, self).__init__(question, answers)
         self.score = 0
 
     def answer(self, given_answer):
-        super(R4Question, self).answer(given_answer)
+        super(R5Question, self).answer(given_answer)
         self.score += 10
 
     @staticmethod
     def from_str(question_str: str):
         question, answers = question_str[1:-1].split(",")
         answers = answers[1:-1].split("|")
-        return R4Question(question, answers)
+        return R5Question(question, answers)
 
-class R5Question(Question):
+
+class R6Question(Question):
     def __init__(self, question: str, answers: list):
-        super(R5Question, self).__init__(question, answers)
+        super(R6Question, self).__init__(question, answers)
         self.score = -20
 
     @staticmethod
@@ -113,5 +115,5 @@ class R5Question(Question):
         print(question_str)
         question, answers = question_str[1:-1].split(",")
         answers = answers[1:-1].split("|")
-        return R5Question(question, answers)
+        return R6Question(question, answers)
 

@@ -298,72 +298,6 @@ class RoundControlFrame:
         )
         button.pack(anchor="nw")
 
-    def r4_create_next(self, controller, next_player):
-        self.refresh()
-        button = tk.Button(
-            self.frame,
-            text=f"Next up: {next_player}",
-            command=lambda: controller.r4_question(),
-            bg="white",
-            fg="black",
-            font=("Helvetica", 8, "bold"),
-            width=75,
-            height=2
-        )
-        button.pack(anchor="nw")
-
-    def r4_create_answer(self, controller, answer_info):
-        self.refresh()
-        for i, answer in enumerate(answer_info):
-            if not answer[1]:
-                button = tk.Button(
-                    self.frame,
-                    text=answer[0],
-                    command=lambda r=answer[0]: controller.r4_answer(r),
-                    bg="white",
-                    fg="black",
-                    font=("Helvetica", 8, "bold"),
-                    width=75,
-                    height=2
-                )
-                button.pack(anchor="nw")
-            else:
-                label = tk.Label(
-                    self.frame,
-                    text=answer[0],
-                    bg="white",
-                    fg="red",
-                    font=("Helvetica", 8),
-                    width=75,
-                    height=2
-                )
-                label.pack(anchor="nw")
-        button = tk.Button(
-            self.frame,
-            text="pass",
-            command=lambda: controller.r4_pass_question(),
-            bg="grey",
-            fg="black",
-            font=("Helvetica", 10, "bold"),
-            width=75,
-            height=2
-        )
-        button.pack(anchor="nw")
-
-    def r4_create_pass(self, controller, next_player):
-        self.refresh()
-        button = tk.Button(
-            self.frame,
-            text=f"Next up: {next_player}",
-            command=lambda: controller.r4_continue(),
-            bg="white",
-            fg="black",
-            font=("Helvetica", 8, "bold"),
-            width=75,
-            height=2
-        )
-        button.pack(anchor="nw")
-
     def r5_create_next(self, controller, next_player):
         self.refresh()
         button = tk.Button(
@@ -422,6 +356,72 @@ class RoundControlFrame:
             self.frame,
             text=f"Next up: {next_player}",
             command=lambda: controller.r5_continue(),
+            bg="white",
+            fg="black",
+            font=("Helvetica", 8, "bold"),
+            width=75,
+            height=2
+        )
+        button.pack(anchor="nw")
+
+    def r6_create_next(self, controller, next_player):
+        self.refresh()
+        button = tk.Button(
+            self.frame,
+            text=f"Next up: {next_player}",
+            command=lambda: controller.r6_question(),
+            bg="white",
+            fg="black",
+            font=("Helvetica", 8, "bold"),
+            width=75,
+            height=2
+        )
+        button.pack(anchor="nw")
+
+    def r6_create_answer(self, controller, answer_info):
+        self.refresh()
+        for i, answer in enumerate(answer_info):
+            if not answer[1]:
+                button = tk.Button(
+                    self.frame,
+                    text=answer[0],
+                    command=lambda r=answer[0]: controller.r6_answer(r),
+                    bg="white",
+                    fg="black",
+                    font=("Helvetica", 8, "bold"),
+                    width=75,
+                    height=2
+                )
+                button.pack(anchor="nw")
+            else:
+                label = tk.Label(
+                    self.frame,
+                    text=answer[0],
+                    bg="white",
+                    fg="red",
+                    font=("Helvetica", 8),
+                    width=75,
+                    height=2
+                )
+                label.pack(anchor="nw")
+        button = tk.Button(
+            self.frame,
+            text="pass",
+            command=lambda: controller.r6_pass_question(),
+            bg="grey",
+            fg="black",
+            font=("Helvetica", 10, "bold"),
+            width=75,
+            height=2
+        )
+        button.pack(anchor="nw")
+
+    def r6_create_pass(self, controller, next_player):
+        self.refresh()
+        button = tk.Button(
+            self.frame,
+            text=f"Next up: {next_player}",
+            command=lambda: controller.r6_continue(),
             bg="white",
             fg="black",
             font=("Helvetica", 8, "bold"),
