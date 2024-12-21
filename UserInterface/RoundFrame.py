@@ -63,7 +63,7 @@ class RoundFrame:
             label = tk.Label(
                 master=upper_frame,
                 text=hint[0],
-                font=("Arial", 12, "bold"),
+                font=("Arial", 22, "bold"),
                 fg=color,
                 bg="red",
                 padx=10,
