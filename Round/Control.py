@@ -1,6 +1,6 @@
 from Player.Player import Player
 from Player.Control import Control as PlayerControl
-from Round.Question import Question, R2Question, R3Question, R5Question, R6Question
+from Round.Question import Question, R2Question, R3Question, R4Question, R5Question, R6Question
 from SlimsteExceptions import QuestionNotFoundException, QuestionAlreadyAskedException, NoMorePLayersException
 
 
@@ -13,6 +13,7 @@ class Control:
         self.other_player: Player = None
         self.r2_questions = self.read_round2()
         self.r3_questions = self.read_round3()
+        self.r4_questions = self.read_round4()
         self.r5_questions = self.read_round5()
         self.r6_questions = self.read_round6()
 
@@ -35,6 +36,12 @@ class Control:
     def r3_start(self, players):
         self.questions_info = []
         for question in self.r3_questions:
+            self.questions_info.append([question, False])
+        self.start_round(players)
+
+    def r4_start(self, players):
+        self.questions_info = []
+        for question in self.r4_questions:
             self.questions_info.append([question, False])
         self.start_round(players)
 
@@ -169,9 +176,19 @@ class Control:
         return questions
 
     @staticmethod
-    def read_round5():
+    def read_round4():
         questions = []
         with open("questions/round_4", "r", encoding="utf-8") as f:
+            for line in f.readlines():
+                if len(line.strip()) <= 0:
+                    break
+                questions.append(R4Question.from_str(line.strip()))
+        return questions
+
+    @staticmethod
+    def read_round5():
+        questions = []
+        with open("questions/round_5", "r", encoding="utf-8") as f:
             for line in f.readlines():
                 if len(line.strip()) <= 0:
                     break
@@ -181,7 +198,7 @@ class Control:
     @staticmethod
     def read_round6():
         questions = []
-        with open("questions/round_5", "r", encoding="utf-8") as f:
+        with open("questions/round_6", "r", encoding="utf-8") as f:
             for line in f.readlines():
                 if len(line.strip()) <= 0:
                     break

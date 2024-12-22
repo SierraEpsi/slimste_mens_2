@@ -89,6 +89,19 @@ class R3Question(Question):
         return shuffled_hints
 
 
+class R4Question(Question):
+    def __init__(self, question: str, answers: list):
+        super(R4Question, self).__init__(question, answers)
+        self.score = 15
+
+    @staticmethod
+    def from_str(question_str: str):
+        print(question_str)
+        question, answers = question_str[1:-1].split(",")
+        answers = answers[1:-1].split("|")
+        return R4Question(question, answers)
+
+
 class R5Question(Question):
     def __init__(self, question: str, answers: list):
         super(R5Question, self).__init__(question, answers)

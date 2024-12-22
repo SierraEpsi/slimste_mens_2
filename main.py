@@ -41,6 +41,9 @@ class Control:
         elif command == "Tour de Puzzle":
             self.round_control.r3_start(self.player_control.get_players())
             self.round_control_frame.r3_create_next(self, self.round_control.get_current_player())
+        elif command == "Galerie":
+            self.round_control.r4_start(self.player_control.get_players())
+            self.round_control_frame.r4_create_next(self, self.round_control.get_current_player())
         elif command == "Mémoire collective":
             self.round_control.r5_start(self.player_control.get_players())
             self.round_control_frame.r5_create_next(self, self.round_control.get_current_player())
@@ -71,14 +74,14 @@ class Control:
     def r2_question(self, question):
         self.round_control.select_question(question)
         answer_info = self.round_control.get_current_answers()
-        self.round_frame.r2_draw(answer_info)
+        self.round_frame.simple_draw(answer_info)
         self.round_control_frame.r2_create_answer(self, answer_info)
         self.start_playing(self.round_control.get_current_player())
 
     def r2_answer(self, answer):
         self.round_control.answer(answer)
         answer_info = self.round_control.get_current_answers()
-        self.round_frame.r2_draw(answer_info)
+        self.round_frame.simple_draw(answer_info)
         if self.round_control.is_question_answered():
             self.stop_playing(self.round_control.get_current_player())
             try:
@@ -109,7 +112,7 @@ class Control:
             except NoMorePLayersException:
                 self.round_control_frame.refresh()
         answer_info = self.round_control.get_current_answers()
-        self.round_frame.r2_draw(answer_info)
+        self.round_frame.simple_draw(answer_info)
 
     def r2_continue(self):
         answer_info = self.round_control.get_current_answers()
@@ -125,7 +128,7 @@ class Control:
     def r3_update_content(self):
         answer_info = self.round_control.get_current_answers()
         hints = self.round_control.get_current_question().get_hints()
-        self.round_frame.r3_draw(hints, answer_info)
+        self.round_frame.puzzle_draw(hints, answer_info)
         return answer_info
 
     def r3_answer(self, answer):
@@ -157,6 +160,46 @@ class Control:
     def r3_continue(self):
         answer_info = self.round_control.get_current_answers()
         self.round_control_frame.r3_create_answer(self, answer_info)
+        self.start_playing(self.round_control.get_current_player())
+
+    def r4_question(self):
+        self.round_control.next_question()
+        answer_info = self.round_control.get_current_answers()
+        self.round_frame.refresh()
+        self.round_control_frame.r4_create_answer(self, answer_info)
+        self.start_playing(self.round_control.get_current_player())
+
+    def r4_answer(self, answer):
+        self.round_control.answer(answer)
+        answer_info = self.round_control.get_current_answers()
+        self.round_frame.refresh()
+        if self.round_control.is_question_answered():
+            self.stop_playing(self.round_control.get_current_player())
+            try:
+                self.round_control.end_question()
+                self.round_control_frame.r4_create_next(self, self.round_control.get_current_player())
+            except NoMorePLayersException:
+                self.round_control_frame.refresh()
+        else:
+            self.round_control_frame.r4_create_answer(self, answer_info)
+
+    def r4_pass_question(self):
+        self.stop_playing(self.round_control.get_current_player())
+        try:
+            self.round_control.pass_question()
+            self.round_control_frame.r4_create_pass(self, self.round_control.get_current_player())
+        except NoMorePLayersException:
+            try:
+                self.round_control.end_question()
+                self.round_control_frame.r4_create_next(self, self.round_control.get_current_player())
+            except NoMorePLayersException:
+                self.round_control_frame.refresh()
+        answer_info = self.round_control.get_current_answers()
+        self.round_frame.refresh()
+
+    def r4_continue(self):
+        answer_info = self.round_control.get_current_answers()
+        self.round_control_frame.r4_create_answer(self, answer_info)
         self.start_playing(self.round_control.get_current_player())
 
     def r5_question(self):

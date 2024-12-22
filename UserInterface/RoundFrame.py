@@ -25,7 +25,7 @@ class RoundFrame:
         for widget in self.frame.winfo_children():
             widget.destroy()
 
-    def r2_draw(self, answers_info):
+    def simple_draw(self, answers_info):
         self.refresh()
         for i, answer in enumerate(answers_info):
             color = "red"
@@ -42,7 +42,7 @@ class RoundFrame:
             )
             label.grid(row=i, column=0, padx=5, pady=5)
 
-    def r3_draw(self, question_hints, answers_info):
+    def puzzle_draw(self, question_hints, answers_info):
         self.refresh()
 
         upper_frame = tk.Frame(

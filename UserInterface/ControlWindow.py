@@ -24,7 +24,7 @@ class ControlWindow:
         self.right_frame = right_frame
 
     def create_menu(self, frame: tk.Frame, controller):
-        pages = ["Setup","Debug","Porte Ouverte","Tour de Puzzle","Mémoire collective","Final"]
+        pages = ["Setup","Debug","Porte Ouverte","Tour de Puzzle","Galerie","Mémoire collective","Final"]
         menu_buttons = [
             tk.Button(
                 frame,

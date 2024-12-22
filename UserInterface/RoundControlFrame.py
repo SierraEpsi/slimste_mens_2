@@ -298,6 +298,76 @@ class RoundControlFrame:
         )
         button.pack(anchor="nw")
 
+    def r4_create_next(self, controller, next_player):
+        self.refresh()
+        button = tk.Button(
+            self.frame,
+            text=f"Next up: {next_player}",
+            command=lambda: controller.r4_question(),
+            bg="white",
+            fg="black",
+            font=("Helvetica", 8, "bold"),
+            width=75,
+            height=2
+        )
+        button.pack(anchor="nw")
+
+    def r4_create_answer(self, controller, answer_info):
+        self.refresh()
+        up_frame = tk.Frame(master=self.frame)
+        up_frame.pack(side="top")
+        down_frame = tk.Frame(master=self.frame)
+        down_frame.pack(side="bottom")
+        for i, answer in enumerate(answer_info):
+            if not answer[1]:
+                button = tk.Button(
+                    up_frame,
+                    text=answer[0],
+                    command=lambda r=answer[0]: controller.r4_answer(r),
+                    bg="white",
+                    fg="black",
+                    font=("Helvetica", 8, "bold"),
+                    width=25,
+                    height=2
+                )
+                button.grid(column=i % 2, row=int(i/2))
+            else:
+                label = tk.Label(
+                    up_frame,
+                    text=answer[0],
+                    bg="white",
+                    fg="red",
+                    font=("Helvetica", 8),
+                    width=25,
+                    height=2
+                )
+                label.grid(column=i % 2, row=int(i/2))
+        button = tk.Button(
+            down_frame,
+            text="pass",
+            command=lambda: controller.r4_pass_question(),
+            bg="grey",
+            fg="black",
+            font=("Helvetica", 10, "bold"),
+            width=75,
+            height=2
+        )
+        button.pack(anchor="nw")
+
+    def r4_create_pass(self, controller, next_player):
+        self.refresh()
+        button = tk.Button(
+            self.frame,
+            text=f"Next up: {next_player}",
+            command=lambda: controller.r4_continue(),
+            bg="white",
+            fg="black",
+            font=("Helvetica", 8, "bold"),
+            width=75,
+            height=2
+        )
+        button.pack(anchor="nw")
+
     def r5_create_next(self, controller, next_player):
         self.refresh()
         button = tk.Button(
