@@ -125,7 +125,6 @@ class R6Question(Question):
 
     @staticmethod
     def from_str(question_str: str):
-        print(question_str)
         question, answers = question_str[1:-1].split(",")
         answers = answers[1:-1].split("|")
         return R6Question(question, answers)

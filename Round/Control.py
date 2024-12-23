@@ -1,3 +1,5 @@
+import os
+
 from Player.Player import Player
 from Player.Control import Control as PlayerControl
 from Round.Question import Question, R2Question, R3Question, R4Question, R5Question, R6Question
@@ -11,6 +13,7 @@ class Control:
         self.players_info = []
         self.current_player: Player = None
         self.other_player: Player = None
+        print(os.environ['PYTHONPATH'])
         self.r2_questions = self.read_round2()
         self.r3_questions = self.read_round3()
         self.r4_questions = self.read_round4()
@@ -114,7 +117,7 @@ class Control:
     def get_current_answers(self) -> list:
         return self.current_question.get_answer_info()
 
-    def get_current_question(self):
+    def get_current_question(self) -> Question:
         return self.current_question
 
     def answer(self, answer):

@@ -298,6 +298,5 @@ class Control:
         self.control_window.plan_refresh(self)
 
 
-
 if __name__ == '__main__':
     Control()

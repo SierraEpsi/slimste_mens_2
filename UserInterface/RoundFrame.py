@@ -44,7 +44,6 @@ class RoundFrame:
 
     def puzzle_draw(self, question_hints, answers_info):
         self.refresh()
-
         upper_frame = tk.Frame(
             master=self.frame,
             bg="red", width=1000, height=400)
@@ -57,15 +56,15 @@ class RoundFrame:
         lower_frame.pack(anchor="nw")
 
         for i, hint in enumerate(question_hints):
-            color = "white"
+            color = "black"
             if hint[1]:
                 color = hint[2]
             label = tk.Label(
                 master=upper_frame,
                 text=hint[0],
-                font=("Arial", 22, "bold"),
+                font=("Arial", 28, "bold"),
                 fg=color,
-                bg="red",
+                bg="white",
                 padx=10,
                 pady=5,
             )
